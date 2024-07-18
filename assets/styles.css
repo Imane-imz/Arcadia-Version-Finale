@@ -77,12 +77,29 @@
   --bs-link-hover-color: #0a58ca;
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
+  
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+.primary {
+  color: #A65005
+}
+
+.secondary {
+  color: #D9B29C
+}
+
+.dark {
+  color: #768C56
+}
+
+.black {
+  color: #415936
 }
 
 @media (prefers-reduced-motion: no-preference) {
