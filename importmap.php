@@ -10,6 +10,7 @@
  *     be used as an "entrypoint" (and passed to the importmap() Twig function).
  *
  * The "importmap:require" command can be used to add new entries to this file.
+ * 
  */
 return [
     'app' => [
