@@ -8,26 +8,24 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="text-center">
-    <h1>Les activités d'Arcidia</h1>
+<div class="text-center m-4">
+    <h1>Les activités d'Arcadia</h1>
 
     <div class="container">
         <div class="row">
-            <div class="col-3 p-3">
-                <ul class="list-group list-group-flush">
-                    {% for service in services %}
-                        <div class="card" style="width: 18rem;">
-                            <img src="../images/Restaurant1" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h4 class="mb-1">{{ service.nom }}</h4>
-                                    <a href="{{ path('app_admin_service_show', {id: service.id}) }}" class="btn btn-primary">En savoir plus</a>
-                                </div>
+        {% for service in services %}
+            <div class="col-12 col-md-6 col-lg-4 p-3">
+                <div class="card">
+                    <img {# src="{{ path('app_admin_service_show', {img: service.image}) }}"  #}class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h4 class="mb-1">{{ service.nom }}</h4>
+                            <a href="{{ path('app_admin_service_show', {id: service.id}) }}" class="btn bg_primary text-white m-2">En savoir plus</a>
                         </div>
-                        {% else %}
-                        <li>Aucun enregistrement en base de données.</li>
-                    {% endfor %}
-                </ul>
+                </div>
             </div>
+                {% else %}
+                <p>Aucun enregistrement en base de données.</p>
+            {% endfor %}
         </div>
     </div>
 

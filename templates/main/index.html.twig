@@ -4,57 +4,56 @@
 
 {% block content %}
     <!-- Header-->
-    <header class="text-white">
-        <div class="hero-scene text-center text-white">
-    <div class="hero-scene-content">
-        <div class="text-hero-scene">
-            <p>Découvrez l’harmonie entre la nature et la biodiversité au</p>
-            <h1>ZOO ARCADIA</h1>
+    <header class="masthead d-flex justify-content-center">
+    <div class="w-50 h-100">
+        <div class="row h-100 align-items-center">
+        <div class="col-12 text-center text-light glassmorphism p-2">
+            <p class="lead">Découvrez l’harmonie entre la nature et la biodiversité au</p>
+            <h1 class="fw-light">Zoo Arcadia</h1>
+            <a class="btn bg_primary text-white" href="#avis">Lire les avis</a>
         </div>
-        <div class="button-hero-scene">
-            <button class="btn btn-primary" href="#avis">Lire les avis</button>
         </div>
     </div>
-</div>
-    </header>
+</header>
     
     <!-- About section-->
-    <section>
-        <div class="container p-4">
-            <div class="text-center">
-                <p>Le Zoo Arcadia s'engage passionnément envers l'écologie et le bien-être animal. 
-                Niché au cœur d'un environnement préservé, notre refuge offre un havre de bonheur pour nos précieux résidents, 
-                tout en inspirant nos visiteurs à préserver et à apprécier la beauté de la nature.</p>
-            </div>
-        </div>
-    </section>
     
-    <section class="bg-light container text-center" id="habitats">
-        <div class="rectangle-text bg-dark" id="habitats">
+<section class="presentation">
+    <div class="container">
+        <div class="text-center">
+            <p>Le Zoo Arcadia s'engage passionnément envers l'écologie et le bien-être animal. 
+            Niché au cœur d'un environnement préservé, notre refuge offre un havre de bonheur pour nos précieux résidents, 
+            tout en inspirant nos visiteurs à préserver et à apprécier la beauté de la nature.</p>
+        </div>
+    </div>
+</section>
+    
+    <section class="bg-light text-center" id="habitats">
+        <div class="rectangle-text bg_dark" id="habitats">
             <a class="text-white h1" href="habitats">Les habitats du zoo</a>
         </div>
 
         <div>
-            <p>Découvrez les habitats du zoo Arcadia</p>
+            <h3 class="m-4">Découvrez les habitats du zoo Arcadia</h3>
         </div>
 
         <div class="container">
             <div class="row">
-                <div class="col p-3">
+                <div class="col-12 col-md-6 col-lg-4 p-3">
                     <div class="image-card text-white">
-                        <img src="../images/HabitatTerrestreSuricate.jpg" class="rounded w-100"/>
+                        <img src="{{ asset('images/HabitatTerrestreSuricate.jpg')}}" class="rounded w-100 img-fluid"/>
                         <h2 class="titre-image">Les habitats terrestres</h2>
                     </div>
                 </div>
-                <div class="col p-3">
+                <div class="col-12 col-md-6 col-lg-4 p-3">
                     <div class="image-card text-white">
-                        <img src="../images/HabitatAquatique.jpg" class="rounded w-100"/>
+                        <img src="{{ asset('images/HabitatAquatique.jpg')}}" class="rounded w-100 img-fluid"/>
                         <h2 class="titre-image">Les habitats aquatiques</h2>
                     </div>
                 </div>
-                <div class="col p-3">
+                <div class="col-12 col-md-6 col-lg-4 p-3">
                     <div class="image-card text-white">
-                        <img src="../images/HabitatAerien.jpg" class="rounded w-100"/>
+                        <img src="{{ asset('images/HabitatAerien.jpg')}}" class="rounded w-100 img-fluid"/>
                         <h2 class="titre-image">Les habitats aériens</h2>
                     </div>
                 </div>  
@@ -62,52 +61,52 @@
         </div>
     </section>
 
-    <section class="bg-light container text-center">
-        <div class="rectangle-text bg-dark container text-center" id="services">
+    <section class=" text-center">
+        <div class="rectangle-text bg_dark" id="services">
             <a class="text-white h1" href="#services">Les activités du zoo</a>
         </div>
 
         <div>
-            <p>Découvrez les activités au zoo Arcadia</p>
+            <h3 class="m-4">Découvrez les activités au zoo Arcadia</h3>
         </div>
 
         <div class="container">
             <div class="row">
-                <div class="col p-3">
+                <div class="col-12 col-md-6 col-lg-4 p-3">
                     <div class="image-card text-white">
-                        <img src="../images/Restaurant1.jpg" class="rounded w-100"/>
+                        <img src="{{ asset('images/Restaurant1.jpg')}}" class="rounded w-100"/>
                         <h2 class="titre-image">Restauration</h2>
                     </div>
                 </div>
-                <div class="col p-3">
+                <div class="col-12 col-md-6 col-lg-4 p-3">
                     <div class="image-card text-white">
-                        <img src="../images/Visite1.jpg" class="rounded w-100"/>
+                        <img src="{{ asset('images/Visite1.jpg')}}" class="rounded w-100"/>
                         <h2 class="titre-image">Visites des habitats</h2>
                     </div>
                 </div>
-                <div class="col p-3">
+                <div class="col-12 col-md-6 col-lg-4 p-3">
                     <div class="image-card text-white">
-                        <img src="../images/Train1.jpg" class="rounded w-100"/>
+                        <img src="{{ asset('images/Train1.jpg')}}" class="rounded w-100"/>
                         <h2 class="titre-image">Visite en petit train</h2>
                     </div>
                 </div>  
             </div>
-            <a href="/admin/service" class="btn btn-primary">Modifier les services</a>
+            <a href="/admin/service" class="btn bg_primary text-white mb-4">Modifier les services</a>
         </div>
     </section>
 
-    <section class="bg-light container text-center">
-        <div class="rectangle-text bg-dark" id="avis">
+    <section class="text-center">
+        <div class="rectangle-text bg_dark" id="avis">
         <h1 class="text-white">Les avis</h1>
     </div>
 
 <section>
     <div class="container" id="avis">
-        <div class="row">
-            <div class="col p-3">
-                <div class="image-card">
-                    <img src="../images/RectangleGris.png" class="rounded w-100"/>
-                    <p class="titre-image text-center">
+        <div class="row m-4"> 
+            <div class="col-12 col-md-6 col-lg-4">           
+                <div class="card bg_light m-2">
+                    <div class="image-card">
+                        <p class="titre-image text-center">
                         <i class="bi bi-star-fill color-primary"></i>
                         <i class="bi bi-star-fill color-primary"></i>
                         <i class="bi bi-star-fill color-primary"></i>
@@ -116,12 +115,14 @@
                             <b>Pseudo 1</b></br></br>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
                         </p>
-                </div>
-            </div>
-            <div class="col p-3">
-                <div class="image-card">
-                    <img src="../images/RectangleGris.png" class="rounded w-100"/>
-                    <p class="titre-image text-center">
+                    </div>
+                </div> 
+            </div> 
+
+            <div class="col-12 col-md-6 col-lg-4"> 
+                <div class="card bg_light m-2">
+                    <div class="image-card">
+                        <p class="titre-image text-center">
                         <i class="bi bi-star-fill color-primary"></i>
                         <i class="bi bi-star-fill color-primary"></i>
                         <i class="bi bi-star-fill color-primary"></i>
@@ -130,49 +131,77 @@
                             <b>Pseudo 2</b></br></br>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
                         </p>
-                </div>
-            </div>
-            <div class="col p-3">
-                <div class="image-card">
-                    <img src="../images/RectangleGris.png" class="rounded w-100"/>
-                    <p class="titre-image text-center">
-                    <i class="bi bi-star-fill color-primary"></i>
-                    <i class="bi bi-star-fill color-primary"></i>
-                    <i class="bi bi-star-fill color-primary"></i>
-                    <i class="bi bi-star-fill color-primary"></i>
-                    <i class="bi bi-star-fill color-primary"></i></br></br>
-                        <b>Pseudo 3</b></br></br>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                    </p>
+                    </div>
                 </div>
             </div>  
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card bg_light m-2">
+                    <div class="image-card">
+                        <p class="titre-image text-center">
+                        <i class="bi bi-star-fill color-primary"></i>
+                        <i class="bi bi-star-fill color-primary"></i>
+                        <i class="bi bi-star-fill color-primary"></i>
+                        <i class="bi bi-star-fill color-primary"></i>
+                        <i class="bi bi-star-fill color-primary"></i></br></br>
+                            <b>Pseudo 3</b></br></br>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                        </p>
+                    </div>
+                </div> 
+            </div>
+            
+            <div>
+                <a class="color-primary mb-2">Voir plus d'avis</a>
+            </div> 
+            <div>
+                <a class="btn bg_primary text-white p-2 m-2">Laisser un avis</a>
+            </div>
         </div>
     </div>
 </section>
-    
-    <!-- Contact section-->
-    <section id="contact">
-        <div class="rectangle-text bg-dark" id="contacter">
-            <h1 class="text-white">Contacter le zoo</h1>
-        </div>
-        <div class="bg-dark p-4">
-            <form class="container">
-                <div class="mb-3">
-                    <label for="titreInput" class="form-label text-white">Titre du message</label></br>
-                    <input class="form-control" type="text" id="titreInput" placeholder="Entrez le titre de votre message">
-                </div>
-                <div class="mb-3">
-                    <label for="messageInput" class="form-label text-white">Votre message</label></br>
-                    <textarea class="rounded form-label" rows="6" cols="120" id="messageInput" placeholder="Écrivez votre message ici"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="EmailInput" class="form-label text-white">Adresse email *</label></br>
-                    <input type="email" class="form-control" id="EmailInput" placeholder="exemple@email.fr" required>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Envoyer votre demande</button>
-                </div>
+
+
+<section id="contact" class="bg_dark text-white d-flex flex-column justify-content-center w-100">
+    <div class="rectangle-text bg_dark" id="contacter">
+        <h1 class="text-white">Contacter le zoo</h1>
+    </div>
+</section>
+
+<div class="container px-5 my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 rounded-3 shadow-lg">
+          <div class="card-body p-4">
+  
+            <form id="contactForm">
+  
+              <!-- Name Input -->
+              <div class="form-floating mb-3">
+                <input class="form-control" id="titreInput" type="text" placeholder="Entrez le titre de votre message" data-sb-validations="required" />
+                <label for="name">Titre du message</label>
+                <div class="invalid-feedback" data-sb-feedback="titreInput:required">Ce champ ne peut pas être vide.</div>
+              </div>
+  
+              <!-- Message Input -->
+              <div class="form-floating mb-3">
+                <textarea class="form-control" id="messageInput" type="text" placeholder="Veuillez écrire votre message ici" style="height: 10rem;" data-sb-validations="required"></textarea>
+                <label for="messageInput">Votre message</label>
+                <div class="invalid-feedback" data-sb-feedback="messageInput:required">Ce champ ne peut pas être vide.</div>
+              </div>
+  
+  
+              <!-- Submit button -->
+              <div class="d-grid">
+                <button class="btn bg_primary btn-lg text-white" id="submitButton" type="submit">Envoyer le message</button>
+              </div>
             </form>
+            <!-- End of contact form -->
+  
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}

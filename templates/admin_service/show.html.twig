@@ -8,15 +8,15 @@
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     </style>
 
-<div class="example-wrapper">
-    <h1>{{service.nom}}</h1>
+<div class="example-wrapper ">
+    <h1 class="d-flex justify-content-center">{{service.nom}}</h1>
         {% if service is not null %}
-            <div class="container">
-                    <div class="card mb-1 m-auto col" style="width: 100%;">
+            <div class="container col">
+                    <div class="card mb-1 m-auto" style="width: 100%;">
                         <div class="card-body">
-                            <div class="card-title d-flex justify-content-between">
-                                <h4 class="mb-1 row">{{ service.nom }}</h4>
-                                <p class="row">{{ service.description }}</p>
+                            <div class="row card-title d-flex justify-content-center">
+                                <h4 class="mb-1 row d-flex justify-content-center mb-4">{{ service.nom }}</h4>
+                                <p class="row text-center">{{ service.description }}</p>
                             </div>
                         </div>
                     </div>
@@ -24,8 +24,10 @@
         {% else %}
             <div>Service non trouvé</div>
         {% endif %}
-    <a href="{{ path('app_admin_service_index') }}" class="btn btn-primary">Retour</a>
-    <a href="{{ path('app_admin_service_edit', {id: service.id}) }}" class="btn btn-warning">Éditer</a>
+    <div class="d-flex justify-content-center p-4">
+    <a href="{{ path('app_admin_service_index') }}" class="btn bg_primary text-white m-2">Retour</a>
+    <a href="{{ path('app_admin_service_edit', {id: service.id}) }}" class="btn bg_green text-white m-2">Éditer</a>
+    </div>
 </div>
 
 {% endblock %}
