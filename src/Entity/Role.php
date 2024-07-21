@@ -19,12 +19,6 @@ class Role
     private ?string $label = null;
 
     /**
-     * @var Collection<int, User>
-     */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'role', orphanRemoval: true)]
-    private Collection $users;
-
-    /**
      * @var Collection<int, Utilisateur>
      */
     #[ORM\OneToMany(targetEntity: Utilisateur::class, mappedBy: 'role', orphanRemoval: true)]
@@ -32,7 +26,6 @@ class Role
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
         $this->utilisateurs = new ArrayCollection();
     }
 
@@ -58,25 +51,25 @@ class Role
      */
     public function getUsers(): Collection
     {
-        return $this->users;
+        return $this->utilisateurs;
     }
 
-    public function addUser(User $user): static
+    public function addUser(Utilisateur $utilisateur): static
     {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->setRole($this);
+        if (!$this->utilisateurs->contains($utilisateur)) {
+            $this->utilisateurs->add($utilisateur);
+            $utilisateur->setRole($this);
         }
 
         return $this;
     }
 
-    public function removeUser(User $user): static
+    public function removeUser(Utilisateur $utilisateur): static
     {
-        if ($this->users->removeElement($user)) {
+        if ($this->utilisateurs->removeElement($utilisateur)) {
             // set the owning side to null (unless already changed)
-            if ($user->getRole() === $this) {
-                $user->setRole(null);
+            if ($utilisateur->getRole() === $this) {
+                $utilisateur->setRole(null);
             }
         }
 

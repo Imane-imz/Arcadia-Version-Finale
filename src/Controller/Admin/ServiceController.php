@@ -13,10 +13,10 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin/service')]
+#[IsGranted('ROLE_ADMIN')]
 class ServiceController extends AbstractController
 {
 
-    #[IsGranted('IS_AUTHENTICATED')]
     #[Route('', name: 'app_admin_service_index', methods: ['GET'])]
     public function index(ServiceRepository $repository): Response
     {

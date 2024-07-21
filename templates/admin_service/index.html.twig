@@ -16,7 +16,7 @@
         {% for service in services %}
             <div class="col-12 col-md-6 col-lg-4 p-3">
                 <div class="card">
-                    <img {# src="{{ path('app_admin_service_show', {img: service.image}) }}"  #}class="card-img-top" alt="...">
+                    <img src="{{ asset('uploads/services/' ~ service.image) }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h4 class="mb-1">{{ service.nom }}</h4>
                             <a href="{{ path('app_admin_service_show', {id: service.id}) }}" class="btn bg_primary text-white m-2">En savoir plus</a>

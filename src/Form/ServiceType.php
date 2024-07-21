@@ -34,7 +34,8 @@ class ServiceType extends AbstractType
 
             /* ->add('image', FileType::class, [
                 'label' => 'Image (JPG, PNG file)',
-                'required' => true,
+                'required' => false,
+                'mapped' => false,
             ]) */
         ;
     }
