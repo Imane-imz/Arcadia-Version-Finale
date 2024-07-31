@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HabitatsTerrestresController!{% endblock %}
+
+{% block content %}
+
+ <!-- Header-->
+<header class="habitats-terrestres d-flex justify-content-center">
+    <div class="w-50 h-100">
+        <div class="row h-100 align-items-center">
+        <div class="col-12 text-center text-light glassmorphism p-2">
+            <p class="lead">Découvrez les animaux des habitats terrestres du</p>
+            <h1 class="fw-light">Zoo Arcadia</h1>
+        </div>
+        </div>
+    </div>
+</header>
+
+<section class="bg-light text-center">
+    <div class="rectangle-text bg_dark">
+        <a class="text-white h1" href="#">Les animaux des habitats terrestres du zoo</a>
+    </div>
+</section>
+
+<div class="container text-center">
+
+    <p class="d-inline-flex gap-1">
+        <a class="btn" data-bs-toggle="collapse" href="#lions" role="button" aria-expanded="false" aria-controls="lions">
+            <img src="{{ asset('images/CoupleLions.jpg')}}" class="rounded w-100 img-fluid" style="object-fit: cover; max-height: 250px;"/>
+        </a>
+        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#tigres" aria-expanded="false" aria-controls="tigres">
+            <img src="{{ asset('images/CoupleTigres.jpg')}}" class="rounded w-100 img-fluid" style="object-fit: cover; max-height: 250px;"/>
+        </button>
+        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#elephants" aria-expanded="false" aria-controls="elephants">
+            <img src="{{ asset('images/CoupleElephants.jpg')}}" class="rounded w-100 img-fluid" style="object-fit: cover; max-height: 250px;"/>
+        </button>
+    </p>
+
+    <div class="row">
+        <div class="container">
+            <div class="collapse multi-collapse" id="lions">
+                <h3 class="bg_green text-white p-4">Nos lions</h3>
+                <div class="card card-body bg_dark text-white">
+                    <div class="image-card">
+                        <img src="{{ asset('images/Leo.jpg')}}" class="rounded w-100" style="max-width: 300px; max-height: 200px"/>
+                        <h3 class="titre-image text-white">Léo</h3>
+                        <div class="">
+                            <p>Lion d'Afrique</br>
+                            Savanne</p>
+                        </div></hr>
+                        <div>
+                            <h3 class="text-decoration-underline">État de l'animal</h3>
+                            <p>Léo a 4 ans et se porte à merveille.</br>
+                                Il est très actif, très joueur et adore taquiner</br>
+                                sa chère et tendre, Léa.</p>
+                        </div></hr>
+                        <div>
+                            <h3 class="text-decoration-underline">Nourriture</h3>
+                            <p>Carnivore : zèbres, gnous, girafes, antilopes, phacochères.</br>
+                                Parfois des buffles ou de jeunes pachydermes.</br>
+                                Petites proies pour les chasseurs solitaires.</p>
+                        </div></hr>
+                        <div>
+                            <h3 class="text-decoration-underline">Dernière date de passage du vétérinaire :</h3>
+                            <p>Le 22/07/2024</p>
+                        </div></hr>
+                        <div>
+                            <h3 class="text-decoration-underline">Avis du vétérinaire :</h3>
+                            <p>Léo se porte très bien.</br>
+                                Son régime alimentaire lui convient parfaitement.</br>
+                                Il est physiquement en grande forme.</br>
+                                Il ne nécessite aucun soin particulier.</p>
+                        </div></hr>
+                    </div>
+
+
+
+                    <div class="image-card text-white">
+                        <img src="{{ asset('images/Lea.jpg')}}" class="rounded w-100" style="max-width: 300px; max-height: 200px;"/>
+                        <h3 class="titre-image text-white">Léa</h3>
+                        <p>Lion d'Afrique</br>
+                        Savanne</p>
+                        </div></hr>
+                        <div>
+                            <h3 class="text-decoration-underline">État de l'animal</h3>
+                            <p>Léo a 4 ans et se porte à merveille.</br>
+                                Il est très actif, très joueur et adore taquiner</br>
+                                sa chère et tendre, Léa.</p>
+                        </div></hr>
+                        <div>
+                            <h3 class="text-decoration-underline">Nourriture</h3>
+                            <p>Carnivore : zèbres, gnous, girafes, antilopes, phacochères.</br>
+                                Parfois des buffles ou de jeunes pachydermes.</br>
+                                Petites proies pour les chasseurs solitaires.</p>
+                        </div></hr>
+                        <div>
+                            <h3 class="text-decoration-underline">Dernière date de passage du vétérinaire :</h3>
+                            <p>Le 22/07/2024</p>
+                        </div></hr>
+                        <div>
+                            <h3 class="text-decoration-underline">Avis du vétérinaire :</h3>
+                            <p>Léo se porte très bien.</br>
+                                Son régime alimentaire lui convient parfaitement.</br>
+                                Il est physiquement en grande forme.</br>
+                                Il ne nécessite aucun soin particulier.</p>
+                        </div></hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 p-3">
+            <div class="collapse multi-collapse" id="tigres">
+                <h5>Les habitats aquatiques du Zoo Arcadia</h5>
+                <div class="card card-body">
+                    <div class="image-card text-white">
+                        <a class="text-white" href="/tortues"><img src="{{ asset('images/Tigro.jpg')}}" class="rounded w-100"/>
+                        <h5 class="titre-image">Nos Tortues</h5></a>
+                    </div>
+                    <div class="image-card text-white">
+                        <a class="text-white" href="/loutres"><img src="{{ asset('images/Tigra.jpg')}}" class="rounded w-100"/>
+                        <h5 class="titre-image">Nos Loutres</h5></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 p-3">
+            <div class="collapse multi-collapse" id="elephants">
+                <h5>Les habitats aériens du Zoo Arcadia</h5>
+                <div class="card card-body">
+                    <div class="image-card text-white">
+                        <a class="text-white" href="/perroquets"><img src="{{ asset('images/CouplePerroquets.jpg')}}" class="rounded w-100"/>
+                        <h5 class="titre-image">Nos Perroquets</h5></a>
+                    </div>
+                    <div class="image-card text-white">
+                        <a class="text-white" href="/flamants"><img src="{{ asset('images/CoupleFlamants.jpg')}}" class="rounded w-100"/>
+                        <h5 class="titre-image">Nos Flamants</h5></a>
+                    </div>
+                    <div class="image-card text-white">
+                        <a class="text-white" href="/autruches"><img src="{{ asset('images/CoupleAutruches.jpg')}}" class="rounded w-100"/>
+                        <h5 class="titre-image">Nos Autruches</h5></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

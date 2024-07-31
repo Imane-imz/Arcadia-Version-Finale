@@ -48,6 +48,26 @@ section {
     padding: 0 0 25rem 0;
   }
 
+.habitats {
+	height: 70vh;
+    min-height: 500px;
+    background-image: url("../images/Elephants.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0 0 25rem 0;
+}
+
+.habitats-terrestres {
+	height: 70vh;
+    min-height: 500px;
+    background-image: url("../images/HabitatTerrestreSuricate.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0 0 25rem 0;
+}
+
 
 .presentation {
     padding: 3rem;
