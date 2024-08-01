@@ -28,13 +28,13 @@
 
     <p class="d-inline-flex gap-1">
         <a class="btn" data-bs-toggle="collapse" href="#habitatsTerrestres" role="button" aria-expanded="false" aria-controls="habitatsTerrestres">
-            <img src="{{ asset('images/HabitatTerrestreSuricate.jpg')}}" class="rounded w-100 img-fluid" style="object-fit: cover; max-height: 250px;"/>
+            <img src="{{ asset('images/HabitatTerrestreSuricate.jpg')}}" class="rounded w-100 img-fluid" style="object-fit: cover; max-height: 250px; max-width: 400px;"/>
         </a>
         <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#habitatsAquatiques" aria-expanded="false" aria-controls="habitatsAquatiques">
-            <img src="{{ asset('images/HabitatAquatique.jpg')}}" class="rounded w-100 img-fluid" style="object-fit: cover; max-height: 250px;"/>
+            <img src="{{ asset('images/HabitatAquatique.jpg')}}" class="rounded w-100 img-fluid" style="object-fit: cover; max-height: 250px; max-width: 400px;"/>
         </button>
         <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#habitatsAeriens" aria-expanded="false" aria-controls="habitatsAeriens">
-            <img src="{{ asset('images/HabitatAerien.jpg')}}" class="rounded w-100 img-fluid" style="object-fit: cover; max-height: 250px;"/>
+            <img src="{{ asset('images/HabitatAerien.jpg')}}" class="rounded w-100 img-fluid" style="object-fit: cover; max-height: 250px; max-width: 400px;"/>
         </button>
     </p>
 
@@ -42,18 +42,18 @@
         <div class="col-12 col-md-6 col-lg-4 p-3">
             <div class="collapse multi-collapse" id="habitatsTerrestres">
                 <h5>Les habitats terrestres du Zoo Arcadia</h5>
-                <div class="card card-body">
+                <div class="card card-body bg_dark text-white">
                     <div class="image-card text-white">
                         <a class="text-white" href="/habitats/terrestres"><img src="{{ asset('images/CoupleLions.jpg')}}" class="rounded w-100"/>
-                        <h5 class="titre-image">Nos Lions</h5></a>
+                        <h5 class="titre-image text-white">Nos Lions</h5></a>
                     </div>
                     <div class="image-card text-white">
-                        <a class="text-white" href="/tigres"><img src="{{ asset('images/CoupleTigres.jpg')}}" class="rounded w-100"/>
-                        <h5 class="titre-image">Nos Tigres</h5></a>
+                        <a class="text-white" href="/habitats/terrestres"><img src="{{ asset('images/CoupleTigres.jpg')}}" class="rounded w-100"/>
+                        <h5 class="titre-image text-white">Nos Tigres</h5></a>
                     </div>
                     <div class="image-card text-white">
-                        <a class="text-white" href="/elephants"><img src="{{ asset('images/CoupleElephants.jpg')}}" class="rounded w-100"/>
-                        <h5 class="titre-image">Nos Éléphants</h5></a>
+                        <a class="text-white" href="/habitats/terrestres"><img src="{{ asset('images/CoupleElephants.jpg')}}" class="rounded w-100"/>
+                        <h5 class="titre-image text-white">Nos Éléphants</h5></a>
                     </div>
                 </div>
             </div>
@@ -62,17 +62,17 @@
         <div class="col-12 col-md-6 col-lg-4 p-3">
             <div class="collapse multi-collapse" id="habitatsAquatiques">
                 <h5>Les habitats aquatiques du Zoo Arcadia</h5>
-                <div class="card card-body">
+                <div class="card card-body bg_dark text-white">
                     <div class="image-card text-white">
-                        <a class="text-white" href="/tortues"><img src="{{ asset('images/CoupleTortues.jpg')}}" class="rounded w-100"/>
-                        <h5 class="titre-image">Nos Tortues</h5></a>
+                        <a class="text-white" href="/habitats/aquatiques"><img src="{{ asset('images/CoupleTortues.jpg')}}" class="rounded w-100"/>
+                        <h5 class="titre-image text-white">Nos Tortues</h5></a>
                     </div>
                     <div class="image-card text-white">
-                        <a class="text-white" href="/loutres"><img src="{{ asset('images/CoupleLoutres.jpg')}}" class="rounded w-100"/>
+                        <a class="text-white" href="/habitats/aquatiques"><img src="{{ asset('images/CoupleLoutres.jpg')}}" class="rounded w-100"/>
                         <h5 class="titre-image">Nos Loutres</h5></a>
                     </div>
                     <div class="image-card text-white">
-                        <a class="text-white" href="/alligators"><img src="{{ asset('images/CoupleAlligator.jpg')}}" class="rounded w-100"/>
+                        <a class="text-white" href="/habitats/aquatiques"><img src="{{ asset('images/CoupleAlligator.jpg')}}" class="rounded w-100"/>
                         <h5 class="titre-image">Nos Alligators</h5></a>
                     </div>
                 </div>
@@ -82,18 +82,18 @@
         <div class="col-12 col-md-6 col-lg-4 p-3">
             <div class="collapse multi-collapse" id="habitatsAeriens">
                 <h5>Les habitats aériens du Zoo Arcadia</h5>
-                <div class="card card-body">
+                <div class="card card-body bg_dark text-white">
                     <div class="image-card text-white">
-                        <a class="text-white" href="/perroquets"><img src="{{ asset('images/CouplePerroquets.jpg')}}" class="rounded w-100"/>
-                        <h5 class="titre-image">Nos Perroquets</h5></a>
+                        <a class="text-white" href="/habitats/aeriens"><img src="{{ asset('images/CouplePerroquets.jpg')}}" class="rounded w-100"/>
+                        <h5 class="titre-image text-white">Nos Perroquets</h5></a>
                     </div>
                     <div class="image-card text-white">
-                        <a class="text-white" href="/flamants"><img src="{{ asset('images/CoupleFlamants.jpg')}}" class="rounded w-100"/>
-                        <h5 class="titre-image">Nos Flamants</h5></a>
+                        <a class="text-white" href="/habitats/aeriens"><img src="{{ asset('images/CoupleFlamants.jpg')}}" class="rounded w-100"/>
+                        <h5 class="titre-image text-white">Nos Flamants</h5></a>
                     </div>
                     <div class="image-card text-white">
-                        <a class="text-white" href="/autruches"><img src="{{ asset('images/CoupleAutruches.jpg')}}" class="rounded w-100"/>
-                        <h5 class="titre-image">Nos Autruches</h5></a>
+                        <a class="text-white" href="/habitats/aeriens"><img src="{{ asset('images/CoupleAutruches.jpg')}}" class="rounded w-100"/>
+                        <h5 class="titre-image text-white">Nos Autruches</h5></a>
                     </div>
                 </div>
             </div>
