@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Service;
+use App\Entity\Avis;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -10,17 +10,17 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 
-class ServiceType extends AbstractType
+class AvisFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class, [
-                'label' => 'Intitulé du service'
+            ->add('pseudo', TextType::class, [
+                'label' => 'Pseudo'
             ])
 
-            ->add('description', TextType::class, [
-                'label' => 'Description'
+            ->add('avis', TextType::class, [
+                'label' => 'Votre avis'
             ])
 
             ->add('confirmation', CheckboxType::class, [
@@ -30,19 +30,14 @@ class ServiceType extends AbstractType
                     new IsTrue(message : "Veuillez cocher la case pour ajouter le service."),
                 ]
             ])
-
-            /* ->add('image', FileType::class, [
-                'label' => 'Image (JPG, PNG file)',
-                'required' => false,
-                'mapped' => false,
-            ]) */
+        
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Service::class,
+            'data_class' => Avis::class,
         ]);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Service;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -10,39 +10,41 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 
-class ServiceType extends AbstractType
+class ContactFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class, [
-                'label' => 'Intitulé du service'
+            ->add('titre', TextType::class, [
+                'label' => 'Titre du message',
+                'mapped' => false,
             ])
 
             ->add('description', TextType::class, [
-                'label' => 'Description'
+                'label' => 'Votre message',
+                'mapped' => false,
+            ])
+
+            ->add('email', TextType::class, [
+                'label' => 'Votre email',
+                'mapped' => false,
             ])
 
             ->add('confirmation', CheckboxType::class, [
                 'mapped' => false,
-                'label' => "Je confirme l'ajout d'un nouveau service",
+                'label' => "Je confirme l'envoi de mon message",
                 'constraints' => [
-                    new IsTrue(message : "Veuillez cocher la case pour ajouter le service."),
+                    new IsTrue(message : "Veuillez cocher la case pour envoyer votre message."),
                 ]
             ])
-
-            /* ->add('image', FileType::class, [
-                'label' => 'Image (JPG, PNG file)',
-                'required' => false,
-                'mapped' => false,
-            ]) */
-        ;
+    
+    ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Service::class,
+            'data_class' => ContactFormType::class,
         ]);
     }
 }
