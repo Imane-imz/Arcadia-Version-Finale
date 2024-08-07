@@ -5,6 +5,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,9 +24,10 @@ class ContactFormType extends AbstractType
             ->add('description', TextType::class, [
                 'label' => 'Votre message',
                 'mapped' => false,
+                'attr' => array('style' => 'height: 200px')
             ])
 
-            ->add('email', TextType::class, [
+            ->add('email', EmailType::class, [
                 'label' => 'Votre email',
                 'mapped' => false,
             ])

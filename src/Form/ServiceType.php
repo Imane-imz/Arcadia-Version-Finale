@@ -20,7 +20,8 @@ class ServiceType extends AbstractType
             ])
 
             ->add('description', TextType::class, [
-                'label' => 'Description'
+                'label' => 'Description',
+                'attr' => array('style' => 'height: 200px')
             ])
 
             ->add('confirmation', CheckboxType::class, [

@@ -20,7 +20,8 @@ class AvisFormType extends AbstractType
             ])
 
             ->add('avis', TextType::class, [
-                'label' => 'Votre avis'
+                'label' => 'Votre avis',
+                'attr' => array('style' => 'height: 200px')
             ])
 
             ->add('confirmation', CheckboxType::class, [
