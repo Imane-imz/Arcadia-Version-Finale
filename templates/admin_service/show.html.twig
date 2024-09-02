@@ -27,6 +27,16 @@
     <div class="d-flex justify-content-center p-4">
     <a href="{{ path('app_admin_service_index') }}" class="btn bg_primary text-white m-2">Retour</a>
     <a href="{{ path('app_admin_service_edit', {id: service.id}) }}" class="btn bg_green text-white m-2">Éditer</a>
+    <a href="{{ path('app_admin_service_delete', {id: service.id}) }}" class="btn bg_green text-white m-2">Supprimer</a>
+
+    <form action="{{ path('app_admin_service_delete', {'id': service.id}) }}" method="post" style="display:inline;">
+        <input type="hidden" name="_method" value="DELETE"> <!-- Ce champ force la méthode DELETE -->
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ service.id) }}">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce service ?');">
+            Supprimer
+        </button>
+    </form>
+
     </div>
 </div>
 

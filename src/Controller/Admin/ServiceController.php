@@ -7,16 +7,16 @@ use App\Form\ServiceType;
 use App\Repository\ServiceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin/service')]
-#[IsGranted('ROLE_ADMIN')]
+/* #[IsGranted('ROLE_ADMIN')] */
 class ServiceController extends AbstractController
 {
-
     #[Route('', name: 'app_admin_service_index', methods: ['GET'])]
     public function index(ServiceRepository $repository): Response
     {
@@ -29,14 +29,49 @@ class ServiceController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_service_new', methods: ['GET', 'POST'])]
-    #[Route('/{id}/edit', name: 'app_admin_service_edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
-    public function new(?Service $service, Request $request, EntityManagerInterface $manager): Response
+    #[IsGranted('ROLE_ADMIN')]
+    public function new(Request $request, EntityManagerInterface $manager): Response
     {
-        if (null == $service) {
-            $this->denyAccessUnlessGranted('ROLE_ADMIN', 'ROLE_EMPLOYEE');
+        $service = new Service();
+        $form = $this->createForm(ServiceType::class, $service);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile|null $file */
+        $file = $form->get('image')->getData();
+
+        if ($file) {
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+
+            try {
+                $file->move(
+                    $this->getParameter('kernel.project_dir') . '/assets/uploads/services',
+                    $filename
+                );
+                $service->setImage($filename);
+            } catch (FileException $e) {
+                $this->addFlash('error', 'Erreur lors du téléchargement de l\'image.');
+                return $this->render('admin_service/new.html.twig', [
+                    'form' => $form->createView(),
+                ]);
+            }
         }
 
-        $service ??= new Service();
+        $manager->persist($service);
+        $manager->flush();
+
+        return $this->redirectToRoute('app_admin_service_show', ['id' => $service->getId()]);
+        }
+
+        return $this->render('admin_service/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'app_admin_service_edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function edit(Service $service, Request $request, EntityManagerInterface $manager): Response
+    {
         $form = $this->createForm(ServiceType::class, $service);
 
         $form->handleRequest($request);
@@ -53,12 +88,27 @@ class ServiceController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_admin_service_show', requirements: ['id' => '\d+'], methods: ['GET'])]
-    public function show(?Service $service): Response
+    public function show(Service $service): Response
     {
         return $this->render('admin_service/show.html.twig', [
             'service' => $service,
         ]);
     }
 
-    
+    #[Route('/delete/{id}', name: 'app_admin_service_delete', methods: ['POST', 'DELETE'])] //La méthode POST supprime l'élément, mais pas la méthode DELETE...
+    #[IsGranted('ROLE_ADMIN')]
+    public function delete(Service $service, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        // Vérification du token CSRF pour sécuriser la suppression
+        if ($this->isCsrfTokenValid('delete'.$service->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($service);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Service supprimé avec succès.');
+        } else {
+            $this->addFlash('error', 'Échec de la suppression du service.');
+        }
+
+        return $this->redirectToRoute('app_admin_service_index'); // Redirection vers la liste des services ou autre page
+    }
 }
