@@ -30,6 +30,7 @@ class ServiceController extends AbstractController
 
     #[Route('/new', name: 'app_admin_service_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_EMPLOYEE')]
     public function new(Request $request, EntityManagerInterface $manager): Response
     {
         $service = new Service();
@@ -70,6 +71,7 @@ class ServiceController extends AbstractController
 
     #[Route('/{id}/edit', name: 'app_admin_service_edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_EMPLOYEE')]
     public function edit(Service $service, Request $request, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(ServiceType::class, $service);
@@ -97,6 +99,7 @@ class ServiceController extends AbstractController
 
     #[Route('/delete/{id}', name: 'app_admin_service_delete', methods: ['POST', 'DELETE'])] //La méthode POST supprime l'élément, mais pas la méthode DELETE...
     #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_EMPLOYEE')]
     public function delete(Service $service, EntityManagerInterface $entityManager, Request $request): Response
     {
         // Vérification du token CSRF pour sécuriser la suppression

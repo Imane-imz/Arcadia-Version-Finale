@@ -34,6 +34,18 @@ class RapportVeterinaire
     #[ORM\JoinColumn(nullable: false)]
     private ?Animal $animal = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Race = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $Etat = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Nourriture = null;
+
+    #[ORM\Column]
+    private ?int $Gramage = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,6 +119,54 @@ class RapportVeterinaire
     public function setAnimal(?Animal $animal): static
     {
         $this->animal = $animal;
+
+        return $this;
+    }
+
+    public function getRace(): ?string
+    {
+        return $this->Race;
+    }
+
+    public function setRace(string $Race): static
+    {
+        $this->Race = $Race;
+
+        return $this;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->Etat;
+    }
+
+    public function setEtat(string $Etat): static
+    {
+        $this->Etat = $Etat;
+
+        return $this;
+    }
+
+    public function getNourriture(): ?string
+    {
+        return $this->Nourriture;
+    }
+
+    public function setNourriture(string $Nourriture): static
+    {
+        $this->Nourriture = $Nourriture;
+
+        return $this;
+    }
+
+    public function getGramage(): ?int
+    {
+        return $this->Gramage;
+    }
+
+    public function setGramage(int $Gramage): static
+    {
+        $this->Gramage = $Gramage;
 
         return $this;
     }

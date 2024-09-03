@@ -13,7 +13,7 @@
 {% endif %}
 
 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_VETO') %}
-{{ include('dashboard/comptesrendus.html.twig') }}
+{{ include('dashboard/rapportsvet.html.twig') }}
 {% endif %}
 
 {% if is_granted('ROLE_ADMIN') %}
@@ -21,7 +21,7 @@
 {% endif %}
 
 {% if is_granted('ROLE_VETO') or is_granted('ROLE_ADMIN') %} <!-- retirer le ROLE_ADMIN -->
-{{ include('dashboard/form-comptesrendus.html.twig') }}
+{{ include('dashboard/form-rapportsvet.html.twig') }}
 {{ include('dashboard/form-commenthabitat.html.twig') }}
 {{ include('dashboard/view-nourriture.html.twig') }}
 {% endif %}

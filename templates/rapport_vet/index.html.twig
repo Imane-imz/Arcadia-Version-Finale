@@ -1,16 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des services{% endblock %}
+{% block title %}Rapports Vétérinaires{% endblock %}
 
 {% block content %}
 
+
 <div class="text-center m-4">
-    <h1>Les activités d'Arcadia</h1>
+    <h1>Rapports Vétérinaires</h1>
 
     <div class="container">
         <div class="row">
-        {% for service in services %}
-            <div class="col-12 col-md-6 col-lg-4 p-3">
+        {% for rapportveterinaire in rapportveterinaires %}
+            <div>
+                <button class="btn bg_primary text-white text-end p-2 m-2" type="button">Trier par</button>
+            </div>
+            <div class="col">
+                <p>{{ rapportveterinaire.date }}</p>
+            </div>
+            <div class="col">
+                <p>{{ rapportveterinaire.animal }}</p>
+            </div>
+            <div class="col">
+                <button class="btn bg_primary text-white mt-2" type="button"> {{ RapportVeterinaire.etat }} Ouvrir</button>
+            </div>
+
+
+            {# <div class="col-12 col-md-6 col-lg-4 p-3">
                 <div class="card">
                     <img src="{{ asset('uploads/services/' ~ service.image) }}" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -18,7 +33,7 @@
                             <a href="{{ path('app_admin_service_show', {id: service.id}) }}" class="btn bg_primary text-white m-2">En savoir plus</a>
                         </div>
                 </div>
-            </div>
+            </div> #}
                 {% else %}
                 <p>Aucun enregistrement en base de données.</p> 
             {% endfor %}
@@ -30,4 +45,5 @@
     </div>
 
 </div>
-{% endblock %}
+
+{% endblock %} 
