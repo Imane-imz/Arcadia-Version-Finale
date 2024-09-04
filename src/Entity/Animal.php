@@ -35,9 +35,21 @@ class Animal
     #[ORM\JoinColumn(nullable: false)]
     private ?Habitat $habitat = null;
 
+    /**
+     * @var Collection<int, Nourriture>
+     */
+    #[ORM\OneToMany(targetEntity: Nourriture::class, mappedBy: 'animal', orphanRemoval: true)]
+    private Collection $nourritures;
+
     public function __construct()
     {
         $this->rapportVeterinaires = new ArrayCollection();
+        $this->nourritures = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->prenom;
     }
 
     public function getId(): ?int
@@ -119,6 +131,36 @@ class Animal
     public function setHabitat(?Habitat $habitat): static
     {
         $this->habitat = $habitat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Nourriture>
+     */
+    public function getNourritures(): Collection
+    {
+        return $this->nourritures;
+    }
+
+    public function addNourriture(Nourriture $nourriture): static
+    {
+        if (!$this->nourritures->contains($nourriture)) {
+            $this->nourritures->add($nourriture);
+            $nourriture->setAnimal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNourriture(Nourriture $nourriture): static
+    {
+        if ($this->nourritures->removeElement($nourriture)) {
+            // set the owning side to null (unless already changed)
+            if ($nourriture->getAnimal() === $this) {
+                $nourriture->setAnimal(null);
+            }
+        }
 
         return $this;
     }

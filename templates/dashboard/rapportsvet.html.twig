@@ -2,53 +2,19 @@
     <div class="bg_dark text-white">
         <div class="container text-center">
             <div>
-                <h1 class="m-4 p-4">Comptes-Rendus Vétérinaire</h1>
+                <h1 class="m-4 p-4">Rapports Vétérinaire</h1>
             </div>
             <div>
                 <button class="btn bg_primary text-white text-end p-2 m-2" type="button">Trier par</button>
             </div>
             <div>
                 <ul class="p-2 m-2">
-                    <li class="row border-bottom">
-                        <div class="col">
-                            <p>22/07/2024 -- Léo</p>
-                        </div>
-                        <div class="col">
-                            <button class="btn bg_primary text-white mt-2" type="button">Ouvrir</button>
-                        </div>
-                    </li>
-                    <li class="row border-bottom">
-                        <div class="col">
-                            <p>22/07/2024 -- Léa</p>
-                        </div>
-                        <div class="col">
-                            <button class="btn bg_primary text-white mt-2" type="button">Ouvrir</button>
-                        </div>
-                    </li>
-                    <li class="row border-bottom">
-                        <div class="col">
-                            <p>22/07/2024 -- Tigro</p>
-                        </div>
-                        <div class="col">
-                            <button class="btn bg_primary text-white mt-2" type="button">Ouvrir</button>
-                        </div>
-                    </li>
-                    <li class="row border-bottom">
-                        <div class="col">
-                            <p>22/07/2024 -- Tigra</p>
-                        </div>
-                        <div class="col">
-                            <button class="btn bg_primary text-white mt-2" type="button">Ouvrir</button>
-                        </div>
-                    </li>
-                    <li class="row border-bottom">
-                        <div class="col">
-                            <p>22/07/2024 -- Phanto</p>
-                        </div>
-                        <div class="col">
-                            <button class="btn bg_primary text-white mt-2" type="button">Ouvrir</button>
-                        </div>
-                    </li>
+                 {% for rapportveterinaire in rapportveterinaires %}
+                    {{ include('rapport_vet/item.html.twig') }}
+                    
+                 {% else %}
+                    <p>Aucun enregistrement en base de données.</p> 
+                {% endfor %}
                 </ul>
                 <div>
                     <p class="pb-4"><a class="color-secondary" href="#">Afficher la suite...</a></p>

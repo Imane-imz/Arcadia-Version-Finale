@@ -15,25 +15,14 @@
                 <button class="btn bg_primary text-white text-end p-2 m-2" type="button">Trier par</button>
             </div>
             <div class="col">
-                <p>{{ rapportveterinaire.date }}</p>
+                <p>{{ rapportveterinaire.date|date('d/m/Y') }}</p>
             </div>
             <div class="col">
                 <p>{{ rapportveterinaire.animal }}</p>
             </div>
             <div class="col">
-                <button class="btn bg_primary text-white mt-2" type="button"> {{ RapportVeterinaire.etat }} Ouvrir</button>
+                <button class="btn bg_primary text-white mt-2" type="button"> {{ rapportveterinaire.etat }} Ouvrir</button>
             </div>
-
-
-            {# <div class="col-12 col-md-6 col-lg-4 p-3">
-                <div class="card">
-                    <img src="{{ asset('uploads/services/' ~ service.image) }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h4 class="mb-1">{{ service.nom }}</h4>
-                            <a href="{{ path('app_admin_service_show', {id: service.id}) }}" class="btn bg_primary text-white m-2">En savoir plus</a>
-                        </div>
-                </div>
-            </div> #}
                 {% else %}
                 <p>Aucun enregistrement en base de données.</p> 
             {% endfor %}
@@ -41,7 +30,7 @@
     </div>
 
     <div>
-        <a class="btn bg_primary text-white m-4" href="service/new">Ajouter une nouvelle activité</a>
+        <a class="btn bg_primary text-white m-4" href="service/new">Enregistrer le rapport</a>
     </div>
 
 </div>

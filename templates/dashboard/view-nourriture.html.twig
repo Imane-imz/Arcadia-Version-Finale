@@ -6,46 +6,12 @@
             </div>
             <div>
                 <ul class="p-2 m-2">
-                    <li class="row border-bottom">
-                        <div class="col">
-                            <p>Léo</p>
-                        </div>
-                        <div class="col">
-                            <button class="btn bg_primary text-white mt-2" type="button">Ouvrir</button>
-                        </div>
-                    </li>
-                    <li class="row border-bottom">
-                        <div class="col">
-                            <p>Léa</p>
-                        </div>
-                        <div class="col">
-                            <button class="btn bg_primary text-white mt-2" type="button">Ouvrir</button>
-                        </div>
-                    </li>
-                    <li class="row border-bottom">
-                        <div class="col">
-                            <p>Tigro</p>
-                        </div>
-                        <div class="col">
-                            <button class="btn bg_primary text-white mt-2" type="button">Ouvrir</button>
-                        </div>
-                    </li>
-                    <li class="row border-bottom">
-                        <div class="col">
-                            <p>Tigra</p>
-                        </div>
-                        <div class="col">
-                            <button class="btn bg_primary text-white mt-2" type="button">Ouvrir</button>
-                        </div>
-                    </li>
-                    <li class="row border-bottom">
-                        <div class="col">
-                            <p>Phanto</p>
-                        </div>
-                        <div class="col">
-                            <button class="btn bg_primary text-white mt-2" type="button">Ouvrir</button>
-                        </div>
-                    </li>
+                 {% for nourriture in nourritures %}
+                    {{ include('nourriture/item.html.twig') }}
+                    
+                 {% else %}
+                    <p>Aucun enregistrement en base de données.</p> 
+                {% endfor %}
                 </ul>
                 <div>
                     <p class="pb-4"><a class="color-secondary" href="#">Afficher la suite...</a></p>
