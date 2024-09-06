@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Nourriture;
+use App\Form\NourritureFormType;
 use App\Repository\NourritureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,12 +28,12 @@ class NourritureController extends AbstractController
         ]);
     }
 
-    #[Route('/nourriture/new', name: 'app_nourriture_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_VETO')]
+    #[Route('/new', name: 'app_nourriture_new', methods: ['GET', 'POST'])]
+    /* #[IsGranted('ROLE_VETO')] */
     public function new(Request $request, EntityManagerInterface $manager): Response
     {
         $nourriture = new Nourriture();
-        $form = $this->createForm(NourritureType::class, $nourriture);
+        $form = $this->createForm(NourritureFormType::class, $nourriture);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,7 +49,7 @@ class NourritureController extends AbstractController
         ]);
     }
 
-    #[Route('/nourriture/delete/{id}', name: 'app_nourriture_delete', methods: ['POST', 'DELETE'])] //La méthode POST supprime l'élément, mais pas la méthode DELETE...
+    #[Route('/delete/{id}', name: 'app_nourriture_delete', methods: ['POST', 'DELETE'])] //La méthode POST supprime l'élément, mais pas la méthode DELETE...
     #[IsGranted('ROLE_VETO')]
     public function delete(Nourriture $nourriture, EntityManagerInterface $entityManager, Request $request): Response
     {

@@ -1,30 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% set action = app.current_route == 'app_avis' ? 'Ajout' : 'Édition' %}
-
-{% block title %}{{ action }} avis{% endblock %}
+{% block title %}Avis{% endblock %}
 
 {% block content %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-    <div class="w-50 m-auto">
-        <div class="example-wrapper">
-            <h1 class="d-flex justify-content-center">Laisser un avis</h1>
-                <form enctype="multipart/form-data">
-                    {{ form_start(form) }}
-                    {{ form_row(form.pseudo, {label: 'Pseudo'}) }}
-                    {{ form_row(form.avis, {label: 'Votre avis'}) }}
-                    {{ form_row(form.confirmation) }}
-                    {{ form_widget(form) }}
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn bg_primary text-white">Envoyer mon avis</button>
-                    </div>
-                    {{ form_end(form) }}
-                </form> 
-           
+<div class="text-center m-4">
+    <h1>Avis</h1>
+
+    <div class="container">
+        <div class="row">
+        {% for avis in avis %}
+            <div class="col-12 col-md-6 col-lg-4 p-3">
+                <div class="card">
+                        <div class="card-body">
+                            <h4 class="mb-1">{{ avis.pseudo }}</h4>
+                            <p class="mb-1">{{ avis.avis }}</p>
+                            <a href="{{ path('app_admin_service_show', {id: avis.id}) }}" class="btn bg_primary text-white m-2">En savoir plus</a>
+                        </div>
+                </div>
+            </div>
+                {% else %}
+                <p>Aucun enregistrement en base de données.</p> 
+            {% endfor %}
         </div>
     </div>
+
+</div>
 {% endblock %}

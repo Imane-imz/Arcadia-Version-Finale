@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RapportVeterinaireRepository::class)]
+#[ORM\HasLifecycleCallbacks] // Permet d'utiliser les callbacks PrePersist et PreUpdate
 class RapportVeterinaire
 {
     #[ORM\Id]
@@ -34,17 +35,14 @@ class RapportVeterinaire
     #[ORM\JoinColumn(nullable: false)]
     private ?Animal $animal = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Race = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $Etat = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Nourriture = null;
+    private ?string $nourriture = null;
 
     #[ORM\Column]
-    private ?int $Gramage = null;
+    private ?int $Gramage = null; 
 
     public function getId(): ?int
     {
@@ -123,18 +121,6 @@ class RapportVeterinaire
         return $this;
     }
 
-    public function getRace(): ?string
-    {
-        return $this->Race;
-    }
-
-    public function setRace(string $Race): static
-    {
-        $this->Race = $Race;
-
-        return $this;
-    }
-
     public function getEtat(): ?string
     {
         return $this->Etat;
@@ -149,12 +135,12 @@ class RapportVeterinaire
 
     public function getNourriture(): ?string
     {
-        return $this->Nourriture;
+        return $this->nourriture;
     }
 
-    public function setNourriture(string $Nourriture): static
+    public function setNourriture(string $nourriture): static
     {
-        $this->Nourriture = $Nourriture;
+        $this->nourriture = $nourriture;
 
         return $this;
     }
@@ -169,5 +155,21 @@ class RapportVeterinaire
         $this->Gramage = $Gramage;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
+    public function getRace(): Race 
+    {
+        return $this->getAnimal()->getRace();
+    }
+
+    public function getRaceLabel(): string
+    {
+        return $this->getRace()->getLabel();
     }
 }

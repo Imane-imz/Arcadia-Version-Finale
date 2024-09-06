@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{Détail des habitats}{% endblock %}
+
+{% block content %}
+
+<div class="example-wrapper ">
+    <h1 class="d-flex justify-content-center">{{habitat.nom}}</h1>
+        {% if habitat is not null %}
+            <div class="container col">
+                    <div class="card mb-1 m-auto" style="width: 100%;">
+                        <div class="card-body">
+                            <div class="row card-title d-flex justify-content-center">
+                                <h4 class="mb-1 row d-flex justify-content-center mb-4">{{ habitat.nom }}</h4>
+                                <p class="row text-center">{{ habitat.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+              </div>  
+        {% else %}
+            <div>Habitat non trouvé</div>
+        {% endif %}
+    <div class="d-flex justify-content-center p-4">
+    <a href="{{ path('app_admin_habitat_index') }}" class="btn bg_primary text-white m-2">Retour</a>
+    <a href="{{ path('app_admin_habitat_edit', {id: habitat.id}) }}" class="btn bg_green text-white m-2">Éditer</a>
+
+    <form action="{{ path('app_admin_habitat_delete', {'id': habitat.id}) }}" method="post" style="display:inline;">
+        <input type="hidden" name="_method" value="DELETE"> <!-- Ce champ force la méthode DELETE -->
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ habitat.id) }}">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet habitat ?');">
+            Supprimer
+        </button>
+    </form>
+
+    </div>
+</div>
+
+{% endblock %}

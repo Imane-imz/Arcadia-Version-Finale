@@ -26,9 +26,9 @@ class AvisFormType extends AbstractType
 
             ->add('confirmation', CheckboxType::class, [
                 'mapped' => false,
-                'label' => "Je confirme l'ajout d'un nouveau service",
+                'label' => "Je confirme l'envoi de mon avis",
                 'constraints' => [
-                    new IsTrue(message : "Veuillez cocher la case pour ajouter le service."),
+                    new IsTrue(message : "Veuillez cocher la case pour envoyer votre avis."),
                 ]
             ])
         

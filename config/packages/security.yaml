@@ -19,6 +19,7 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
+                default_target_path: /admin
                 enable_csrf: true
             logout:
                 path: app_logout
@@ -39,9 +40,9 @@ security:
         # - { path: ^/register, roles: ROLE_ADMIN, ROLE_EMPLOYEE, ROLE_VETO }
     
     role_hierarchy:
-        ROLE_ADMIN: 
-        ROLE_EMPLOYEE: 
-        ROLE_VETO:
+        ROLE_ADMIN: ['ROLE_USER']
+        ROLE_EMPLOYEE: ['ROLE_USER']
+        ROLE_VETO: ['ROLE_USER']
 
 when@test:
     security:

@@ -27,7 +27,7 @@ class Service
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    private ?string $image = null; 
 
     public function getId(): ?int
     {

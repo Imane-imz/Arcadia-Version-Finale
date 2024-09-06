@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\RapportVeterinaire;
+use App\Form\RapportFormType;
 use App\Repository\RapportVeterinaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -14,12 +17,22 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/rapport-vet')]
 class RapportVetController extends AbstractController
 {
-    #[IsGranted('ROLE_ADMIN')]
-    /* #[IsGranted('ROLE_VETO')] */
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
+    
     #[Route('', name: 'app_admin_rapport_index', methods: ['GET'])]
     public function index(RapportVeterinaireRepository $repository): Response
     {
-        $rapportveterinaires = $repository->findAll();
+        if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_VETO')) {
+            throw new AccessDeniedException('Vous n\'avez pas les droits pour accéder à cette page.');
+        }
+
+        $rapportveterinaires = $repository->findBy([], ['createdAt' => 'DESC']);
 
         return $this->render('rapport_vet/index.html.twig', [
             'controller_name' => 'RapportVetController',
@@ -27,20 +40,24 @@ class RapportVetController extends AbstractController
         ]);
     }
 
-    #[Route('/rapport-vet/new', name: 'app_admin_rapport_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_admin_rapport_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_VETO')]
     public function new(Request $request, EntityManagerInterface $manager): Response
     {
+        $user = $this->security->getUser();
+
         $rapportveterinaire = new RapportVeterinaire();
-        $form = $this->createForm(RapportType::class, $rapportveterinaire);
+        $rapportveterinaire->setUser($user);
+        $form = $this->createForm(RapportFormType::class, $rapportveterinaire);
+    
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
         $manager->persist($rapportveterinaire);
-        $manager->flush();
+        $manager->flush(); 
 
-        return $this->redirectToRoute('app_admin_rapport_show', ['id' => $rapportveterinaire->getId()]);
+        return $this->redirectToRoute('app_admin_rapport_index', ['id' => $rapportveterinaire->getId()]);
         }
 
         return $this->render('rapport_vet/new.html.twig', [
@@ -48,7 +65,7 @@ class RapportVetController extends AbstractController
         ]);
     }
 
-    #[Route('/rapport-vet/delete/{id}', name: 'app_admin_rapport_delete', methods: ['POST', 'DELETE'])] //La méthode POST supprime l'élément, mais pas la méthode DELETE...
+    #[Route('/delete/{id}', name: 'app_admin_rapport_delete', methods: ['POST', 'DELETE'])] //La méthode POST supprime l'élément, mais pas la méthode DELETE...
     #[IsGranted('ROLE_VETO')]
     public function delete(RapportVeterinaire $rapportveterinaire, EntityManagerInterface $entityManager, Request $request): Response
     {

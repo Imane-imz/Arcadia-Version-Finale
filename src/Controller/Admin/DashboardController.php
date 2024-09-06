@@ -30,9 +30,9 @@ class DashboardController extends AbstractController
 
         $rapportveterinaires = $this->entityManager->getRepository(RapportVeterinaire::class)->findAll();
         $animaux = $this->entityManager->getRepository(Animal::class)->findAll();
-        $nourritures = $this->entityManager->getRepository(Nourriture::class);
-        $avis = $this->entityManager->getRepository(Avis::class)->findAll();
-        $messages = $this->entityManager->getRepository(Message::class);
+        $nourritures = $this->entityManager->getRepository(Nourriture::class)->findAll();
+        $avis = $this->entityManager->getRepository(Avis::class)->findBy(['isVisible' => false]);
+        $messages = $this->entityManager->getRepository(Message::class)->findAll();
 
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',

@@ -7,6 +7,7 @@ use App\Form\ServiceType;
 use App\Repository\ServiceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin/service')]
-/* #[IsGranted('ROLE_ADMIN')] */
 class ServiceController extends AbstractController
 {
     #[Route('', name: 'app_admin_service_index', methods: ['GET'])]
@@ -29,10 +29,12 @@ class ServiceController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_service_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
-    #[IsGranted('ROLE_EMPLOYEE')]
     public function new(Request $request, EntityManagerInterface $manager): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_EMPLOYEE')) {
+            throw new AccessDeniedException('Vous n\'avez pas les droits pour accéder à cette page.');
+        }
+
         $service = new Service();
         $form = $this->createForm(ServiceType::class, $service);
 
@@ -70,10 +72,12 @@ class ServiceController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_admin_service_edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
-    #[IsGranted('ROLE_EMPLOYEE')]
     public function edit(Service $service, Request $request, EntityManagerInterface $manager): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_EMPLOYEE')) {
+            throw new AccessDeniedException('Vous n\'avez pas les droits pour accéder à cette page.');
+        }
+
         $form = $this->createForm(ServiceType::class, $service);
 
         $form->handleRequest($request);
@@ -98,10 +102,12 @@ class ServiceController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'app_admin_service_delete', methods: ['POST', 'DELETE'])] //La méthode POST supprime l'élément, mais pas la méthode DELETE...
-    #[IsGranted('ROLE_ADMIN')]
-    #[IsGranted('ROLE_EMPLOYEE')]
     public function delete(Service $service, EntityManagerInterface $entityManager, Request $request): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_EMPLOYEE')) {
+            throw new AccessDeniedException('Vous n\'avez pas les droits pour accéder à cette page.');
+        }
+
         // Vérification du token CSRF pour sécuriser la suppression
         if ($this->isCsrfTokenValid('delete'.$service->getId(), $request->request->get('_token'))) {
             $entityManager->remove($service);
