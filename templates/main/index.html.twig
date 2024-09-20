@@ -16,7 +16,6 @@
     </div>
 </header>
     
-    <!-- About section-->
     
 <section class="presentation">
     <div class="container">
@@ -170,38 +169,44 @@
 
 <div class="container px-5 my-5">
     <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="card border-0 rounded-3 shadow-lg">
-          <div class="card-body p-4">
+        <div class="col-lg-8">
+            <div class="card border-0 rounded-3 shadow-lg">
+                <div class="card-body p-4">
   
-            <form id="contactForm">
+                    <form id="contactForm">
+
+                    <!-- Email Input -->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="emailInput" type="text" placeholder="Entrez votre adresse email" data-sb-validations="required" />
+                        <label for="name">Adresse email</label>
+                        <div class="invalid-feedback" data-sb-feedback="titreInput:required">Ce champ ne peut pas être vide.</div>
+                    </div>
+        
+                    <!-- Name Input -->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="titreInput" type="text" placeholder="Entrez le titre de votre message" data-sb-validations="required" />
+                        <label for="name">Titre du message</label>
+                        <div class="invalid-feedback" data-sb-feedback="titreInput:required">Ce champ ne peut pas être vide.</div>
+                    </div>
+        
+                    <!-- Message Input -->
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="messageInput" type="text" placeholder="Veuillez écrire votre message ici" style="height: 10rem;" data-sb-validations="required"></textarea>
+                        <label for="messageInput">Votre message</label>
+                        <div class="invalid-feedback" data-sb-feedback="messageInput:required">Ce champ ne peut pas être vide.</div>
+                    </div>
+        
+        
+                    <!-- Submit button -->
+                    <div class="d-grid">
+                        <button class="btn bg_primary btn-lg text-white" id="submitButton" type="submit">Envoyer le message</button>
+                    </div>
+                    </form>
   
-              <!-- Name Input -->
-              <div class="form-floating mb-3">
-                <input class="form-control" id="titreInput" type="text" placeholder="Entrez le titre de votre message" data-sb-validations="required" />
-                <label for="name">Titre du message</label>
-                <div class="invalid-feedback" data-sb-feedback="titreInput:required">Ce champ ne peut pas être vide.</div>
-              </div>
-  
-              <!-- Message Input -->
-              <div class="form-floating mb-3">
-                <textarea class="form-control" id="messageInput" type="text" placeholder="Veuillez écrire votre message ici" style="height: 10rem;" data-sb-validations="required"></textarea>
-                <label for="messageInput">Votre message</label>
-                <div class="invalid-feedback" data-sb-feedback="messageInput:required">Ce champ ne peut pas être vide.</div>
-              </div>
-  
-  
-              <!-- Submit button -->
-              <div class="d-grid">
-                <button class="btn bg_primary btn-lg text-white" id="submitButton" type="submit">Envoyer le message</button>
-              </div>
-            </form>
-            <!-- End of contact form -->
-  
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
 {% endblock %}

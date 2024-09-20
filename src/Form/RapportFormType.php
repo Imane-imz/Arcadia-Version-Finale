@@ -25,7 +25,7 @@ class RapportFormType extends AbstractType
                 'choice_label' => 'prenom', // Affiche le nom de la catégorie dans le select
                 'placeholder' => 'Séléctionner un animal',
             ])
-
+ 
             ->add('etat', TextType::class, [
                 'label' => 'État général'
             ])

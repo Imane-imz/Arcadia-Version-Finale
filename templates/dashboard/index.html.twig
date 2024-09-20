@@ -10,22 +10,19 @@
 
 {% if is_granted('ROLE_ADMIN') %}
 {{ include('dashboard/buttons_admin.html.twig') }}
+{{ include('dashboard/compteur.html.twig') }}
 {% endif %}
 
 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_VETO') %}
 {{ include('dashboard/rapportsvet.html.twig') }}
 {% endif %}
 
-{% if is_granted('ROLE_ADMIN') %}
-{{ include('dashboard/compteur.html.twig') }}
-{% endif %}
-
-{% if is_granted('ROLE_VETO') %} <!-- retirer le ROLE_ADMIN -->
+{% if is_granted('ROLE_VETO') %} 
 {{ include('dashboard/form-rapportsvet.html.twig') }}
 {{ include('dashboard/view-nourriture.html.twig') }}
 {% endif %}
 
-{% if is_granted('ROLE_EMPLOYEE') %} <!-- retirer le ROLE_ADMIN -->
+{% if is_granted('ROLE_EMPLOYEE') %} 
 {{ include('dashboard/buttons_employee.html.twig') }}
 {{ include('dashboard/gestion-avis.html.twig') }}
 {{ include('dashboard/gestion-messages.html.twig') }}

@@ -2,10 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\Animal;
 use App\Entity\Nourriture;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,15 +20,17 @@ class NourritureFormType extends AbstractType
     {
         $builder
 
-            ->add('animal', TextType::class, [
-                'label' => 'Animal'
-            ])
+        ->add('animal', EntityType::class, [
+            'class' => Animal::class,
+            'choice_label' => 'prenom', // Affiche le nom de la catégorie dans le select
+            'placeholder' => 'Séléctionner un animal',
+        ])
 
             ->add('nourriture', TextType::class, [
                 'label' => 'Nourriture'
             ])
 
-            ->add('quantite', TextType::class, [
+            ->add('quantite', IntegerType::class, [
                 'label' => 'Quantité'
             ])
 
