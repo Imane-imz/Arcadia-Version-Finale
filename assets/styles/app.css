@@ -1,7 +1,47 @@
 @import url("/node_modules/bootstrap-icons/font/bootstrap-icons.css");
  @import 'custom';
  
- html {
+ @media only screen and (max-width: 600px) {
+    /* Styles pour les petits écrans */
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .navbar {
+        display: block;
+        text-align: center;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), 
+       only screen and (-o-min-device-pixel-ratio: 2/1), 
+       only screen and (min-resolution: 192dpi) {
+    /* Pour écrans Retina */
+    .logo {
+        background-size: contain;
+    }
+
+    .high-res-image {
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+    }
+}
+
+
+html {
 	 position: relative;
 	 min-height: 100%;
 }

@@ -4,8 +4,8 @@
 
 {% block content %}
 
-<div class="example-wrapper ">
-    <h1 class="d-flex justify-content-center">{{habitat.nom}}</h1>
+{# <div class="example-wrapper ">
+    <h1 class="d-flex justify-content-center">Les Animaux de l'{{habitat.nom}}</h1>
         {% if habitat is not null %}
             <div class="container col">
                     <div class="card mb-1 m-auto" style="width: 100%;">
@@ -33,6 +33,38 @@
     </form>
 
     </div>
-</div>
+</div> #}
+
+<h1>{{ habitat.nom }}</h1>
+<p>{{ habitat.description }}</p>
+<img src="{{ asset('uploads/habitats/' ~ habitat.image) }}" alt="{{ habitat.nom }}">
+
+<h2>Animaux présents dans cet habitat</h2>
+<ul>
+    {% for animal in habitat.getAnimals %}
+        <li>
+            ({{ animal.image }}) - Race: {{ animal.race.label }}
+        </li>
+    {% else %}
+        <li>Aucun animal dans cet habitat.</li>
+    {% endfor %}
+</ul>
+
+{# <h2>Animaux présents dans cet habitat</h2>
+<ul>
+    {% if animals is defined %}
+        {% for animal in animals %}
+            <li>
+                <strong>{{ animal.prenom }}</strong> ({{ animal.etat }}) - Race: {{ animal.race.nom }}
+            </li>
+        {% else %}
+            <li>Aucun animal dans cet habitat.</li>
+        {% endfor %}
+    {% else %}
+        <li>La variable 'animaux' est non définie.</li>
+    {% endif %}
+</ul>
+ #}
+
 
 {% endblock %}

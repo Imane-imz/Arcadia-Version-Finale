@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Habitat;
 use App\Form\HabitatFormType;
 use App\Repository\HabitatRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -25,7 +26,7 @@ class HabitatController extends AbstractController
         return $this->render('admin_habitat/index.html.twig', [
             'controller_name' => 'HabitatController',
             'habitats' => $habitats,
-        ]);
+        ]); 
     }
 
     #[Route('/new', name: 'app_admin_habitat_new', methods: ['GET', 'POST'])]

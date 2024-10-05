@@ -15,7 +15,7 @@
                     <img src="{{ asset('uploads/habitats/images/' ~ habitat.image) }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h4 class="mb-1">{{ habitat.nom }}</h4>
-                            <a href="{{ path('app_admin_habitat_show', {id: habitat.id}) }}" class="btn bg_primary text-white m-2">En savoir plus</a>
+                            <a href="{{ path('app_admin_habitat_show', {id: habitat.id}) }}" class="btn bg_primary text-white m-2">Voir les animaux des {{ habitat.nom }}</a>
                         </div>
                 </div>
             </div>
@@ -30,4 +30,4 @@
     </div>
 
 </div>
-{% endblock %}
+{% endblock %} 

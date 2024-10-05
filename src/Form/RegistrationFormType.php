@@ -55,11 +55,22 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
 
-            ->add('role', EntityType::class, [
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'Administrateur' => 'ROLE_ADMIN',
+                    'Vétérinaire' => 'ROLE_VETO',
+                    'Employé.e' => 'ROLE_EMPLOYEE'
+                ],
+                'multiple' => true,
+                'expanded' => true,
+                'label' => 'Rôles',
+            ]);
+
+            /* ->add('role', EntityType::class, [
                 'class' => Role::class,
                 'choice_label' => 'label', // Utiliser le champ 'name' de l'entité Role pour l'affichage
                 'label' => 'Rôle',
-            ]);
+            ]); */
     }
 
     public function configureOptions(OptionsResolver $resolver): void
