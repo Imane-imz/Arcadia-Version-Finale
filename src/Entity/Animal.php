@@ -41,6 +41,9 @@ class Animal
     #[ORM\OneToMany(targetEntity: Nourriture::class, mappedBy: 'animal', orphanRemoval: true)]
     private Collection $nourritures;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->rapportVeterinaires = new ArrayCollection();
@@ -161,6 +164,18 @@ class Animal
                 $nourriture->setAnimal(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
