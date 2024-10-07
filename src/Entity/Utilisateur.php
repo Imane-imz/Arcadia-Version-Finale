@@ -41,10 +41,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\ManyToOne(inversedBy: 'utilisateurs')]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?Role $role = null;
-
     /**
      * @var Collection<int, RapportVeterinaire>
      */
@@ -135,18 +131,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function getRole(): ?Role
-    {
-        return $this->role;
-    }
-
-    public function setRole(?Role $role): static
-    {
-        $this->role = $role;
-
-        return $this;
     }
 
     /**
