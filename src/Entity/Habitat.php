@@ -121,4 +121,14 @@ class Habitat
 
         return $this;
     }
+
+   /*  public function getRace(): Race 
+    {
+        return $this->getAnimal()->getRace();
+    }
+
+    public function getRaceLabel(): string
+    {
+        return $this->getRace()->getLabel();
+    } */
 }

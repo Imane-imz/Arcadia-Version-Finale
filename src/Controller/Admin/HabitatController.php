@@ -15,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin/habitat')]
-/* #[IsGranted('ROLE_ADMIN')] */
 class HabitatController extends AbstractController
 {
     #[Route('', name: 'app_admin_habitat_index', methods: ['GET'])]

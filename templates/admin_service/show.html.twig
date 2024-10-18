@@ -12,7 +12,8 @@
                         <div class="card-body">
                             <div class="row card-title d-flex justify-content-center">
                                 <h4 class="mb-1 row d-flex justify-content-center mb-4">{{ service.nom }}</h4>
-                                <p class="row text-center">{{ service.description }}</p>
+                                <img src="{{ asset('uploads/services/' ~ service.image) }}" class="card-img-top" alt="..." style="height:300px; width:600px">
+                                <p class="row text-center p-4">{{ service.description }}</p>
                             </div>
                         </div>
                     </div>
@@ -22,8 +23,9 @@
         {% endif %}
     <div class="d-flex justify-content-center p-4">
     <a href="{{ path('app_admin_service_index') }}" class="btn bg_primary text-white m-2">Retour</a>
+
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
     <a href="{{ path('app_admin_service_edit', {id: service.id}) }}" class="btn bg_green text-white m-2">Éditer</a>
-    <a href="{{ path('app_admin_service_delete', {id: service.id}) }}" class="btn bg_green text-white m-2">Supprimer</a>
 
     <form action="{{ path('app_admin_service_delete', {'id': service.id}) }}" method="post" style="display:inline;">
         <input type="hidden" name="_method" value="DELETE"> <!-- Ce champ force la méthode DELETE -->
@@ -32,6 +34,7 @@
             Supprimer
         </button>
     </form>
+    {% endif %}
 
     </div>
 </div>

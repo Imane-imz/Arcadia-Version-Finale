@@ -1,70 +1,88 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{Détail des habitats}{% endblock %}
+{% block title %} Les animaux de l'{{ habitat.nom }}{% endblock %}
 
 {% block content %}
 
-{# <div class="example-wrapper ">
-    <h1 class="d-flex justify-content-center">Les Animaux de l'{{habitat.nom}}</h1>
-        {% if habitat is not null %}
-            <div class="container col">
-                    <div class="card mb-1 m-auto" style="width: 100%;">
-                        <div class="card-body">
-                            <div class="row card-title d-flex justify-content-center">
-                                <h4 class="mb-1 row d-flex justify-content-center mb-4">{{ habitat.nom }}</h4>
-                                <p class="row text-center">{{ habitat.description }}</p>
+<h1 class="text-center p-4">{{ habitat.nom }}</h1>
+<img src="{{ asset('uploads/habitats/images/' ~ habitat.image) }}" alt="{{ habitat.nom }}" style="width:100%; height:300px">
+
+<h2 class="text-center p-4 bg_dark text-white">Animaux de l'{{ habitat.nom }}</h2>
+
+<div>
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
+        <div class="text-center">
+            <a class="btn bg_primary text-white m-4" href="../animal/new">Ajouter un nouvel animal</a>
+        </div>
+    {% endif %}
+</div>
+
+<div>
+    {% for animal in habitat.getAnimals %}
+
+        <div class="row border-bottom">
+            <div class="col text-center">
+                <img src="{{ asset('uploads/animals/' ~ animal.image) }}" class="card-img-top btn img-fluid" alt="..." style="height:300px; width:600px" 
+                data-bs-toggle="modal" data-bs-target="#animal-modal-{{ animal.id }}">
+            </div>
+        
+
+            <!-- Modal -->
+            <div class="modal fade text-black" id="animal-modal-{{ animal.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header row">
+                            <h1 class="col modal-title fs-3 text-center" id="exampleModalLabel"> {{ animal.prenom }}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-start col">
+                            <div class="row border-bottom">
+                                {{ animal.image }} {# Comment afficher l'image et non le nom du fichier #}
+                            </div>
+                            <div class="row border-bottom">
+                                Prénom de l'animal : {{ animal.prenom }}
+                            </div>
+                            <div class="row border-bottom">
+                                {# Race : {{ animal.getRaceLabel }} #} 
+                            </div>
+                            <div class="row border-bottom">
+                                Habitat : {{ animal.habitatReel }} 
+                            </div>
+                            <div class="row border-bottom">
+                                État général : {{ animal.etat }}
+                            </div>
+                            <div class="row">
+                                Nourriture : {{ animal.nourritureGlobale }}
                             </div>
                         </div>
+                        <div class="modal-footer text-center">
+                            <button type="button" class="btn btn-secondary text-center" data-bs-dismiss="modal">Fermer</button>
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
+                            <a href="{{ path('app_admin_animal_edit', {id: animal.id}) }}" class="btn bg_green text-white m-2">Éditer</a>
+
+                            <form action="{{ path('app_admin_animal_delete', {'id': animal.id}) }}" method="post" style="display:inline;">
+                                <input type="hidden" name="_method" value="DELETE"> <!-- Ce champ force la méthode DELETE -->
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ animal.id) }}">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr.e de vouloir supprimer cet animal ?');">
+                                    Supprimer
+                                </button>
+                            </form>
+                            {% endif %}
+                        </div>
                     </div>
-              </div>  
-        {% else %}
-            <div>Habitat non trouvé</div>
-        {% endif %}
-    <div class="d-flex justify-content-center p-4">
-    <a href="{{ path('app_admin_habitat_index') }}" class="btn bg_primary text-white m-2">Retour</a>
-    <a href="{{ path('app_admin_habitat_edit', {id: habitat.id}) }}" class="btn bg_green text-white m-2">Éditer</a>
+                </div>
+            </div>
+        </div>
 
-    <form action="{{ path('app_admin_habitat_delete', {'id': habitat.id}) }}" method="post" style="display:inline;">
-        <input type="hidden" name="_method" value="DELETE"> <!-- Ce champ force la méthode DELETE -->
-        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ habitat.id) }}">
-        <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet habitat ?');">
-            Supprimer
-        </button>
-    </form>
-
-    </div>
-</div> #}
-
-<h1>{{ habitat.nom }}</h1>
-<p>{{ habitat.description }}</p>
-<img src="{{ asset('uploads/habitats/' ~ habitat.image) }}" alt="{{ habitat.nom }}">
-
-<h2>Animaux présents dans cet habitat</h2>
-<ul>
-    {% for animal in habitat.getAnimals %}
-        <li>
-            ({{ animal.image }}) - Race: {{ animal.race.label }}
-        </li>
     {% else %}
         <li>Aucun animal dans cet habitat.</li>
     {% endfor %}
-</ul>
+</div>
 
-{# <h2>Animaux présents dans cet habitat</h2>
-<ul>
-    {% if animals is defined %}
-        {% for animal in animals %}
-            <li>
-                <strong>{{ animal.prenom }}</strong> ({{ animal.etat }}) - Race: {{ animal.race.nom }}
-            </li>
-        {% else %}
-            <li>Aucun animal dans cet habitat.</li>
-        {% endfor %}
-    {% else %}
-        <li>La variable 'animaux' est non définie.</li>
-    {% endif %}
-</ul>
- #}
+<div class="text-center">
+    <a href="{{ path('app_admin_habitat_index') }}" class="btn bg_primary text-white m-2">Retour à la liste des habitats</a>
+</div>
+
 
 
 {% endblock %}

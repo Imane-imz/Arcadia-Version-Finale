@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AnimalRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
@@ -43,6 +44,12 @@ class Animal
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $habitatReel = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $nourritureGlobale = null;
 
     public function __construct()
     {
@@ -176,6 +183,30 @@ class Animal
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getHabitatReel(): ?string
+    {
+        return $this->habitatReel;
+    }
+
+    public function setHabitatReel(string $habitatReel): static
+    {
+        $this->habitatReel = $habitatReel;
+
+        return $this;
+    }
+
+    public function getNourritureGlobale(): ?string
+    {
+        return $this->nourritureGlobale;
+    }
+
+    public function setNourritureGlobale(string $nourritureGlobale): static
+    {
+        $this->nourritureGlobale = $nourritureGlobale;
 
         return $this;
     }

@@ -114,7 +114,7 @@ class RapportVeterinaire
         return $this->animal;
     }
 
-    public function setAnimal(?Animal $animal): static
+    public function setAnimal(?Animal $animal): static 
     {
         $this->animal = $animal;
 

@@ -25,9 +25,11 @@
         </div>
     </div>
 
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYEE') %}
     <div>
         <a class="btn bg_primary text-white m-4" href="service/new">Ajouter une nouvelle activité</a>
     </div>
+    {% endif %}
 
 </div>
 {% endblock %}
